@@ -1,0 +1,29 @@
+import { getCate } from "../../utils/request";
+
+const state = {
+    cateList:[],
+}
+const mutations = {
+    changeCateList(state,arr){
+        state.cateList = arr;
+    }
+}
+const actions = {
+    cateListActions(content){
+        getCate({istree:true}).then(res=>{
+            content.commit('changeCateList',res.data.list)
+        })
+    }
+}
+const getters = {
+    cateList(state){
+        return state.cateList;
+    }
+}
+export default {
+    state,
+    mutations,
+    actions,
+    getters,
+    namespaced:true,
+}
