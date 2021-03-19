@@ -5,15 +5,15 @@ import store from '../store/index'
 import { errorAlert } from "../utils/alert";
 import router from "../router";
 // 在这设置请求头信息，请求头信息的设置
-axios.interceptors.request.use(config=>{
-    console.log('本次的请求头信息为:'+config.url);
-    // 在这里判断是否是登录页面，不是登录页面的时候，访问其它的页面需要有一个令牌
-    if(config.url != baseUrl+'/login'){
-        // 设置响应头
-        config.headers.authorization = store.state.user.token;
-    }
-    return config;
-})
+// axios.interceptors.request.use(config=>{
+//     console.log('本次的请求头信息为:'+config.url);
+//     // 在这里判断是否是登录页面，不是登录页面的时候，访问其它的页面需要有一个令牌
+//     if(config.url != baseUrl+'/login'){
+//         // 设置响应头
+//         config.headers.authorization = store.state.user.token;
+//     }
+//     return config;
+// })
 // 在这设置一个响应的拦截
 axios.interceptors.response.use(res=>{
     console.group('本次响应路径为'+res.config.url);
