@@ -1,0 +1,26 @@
+import { getSeckill } from "../../utils/request";
+
+const state = {
+    seckillList:[]
+}
+const mutations = {
+    changeSeckillList(state,arr){
+        state.seckillList = arr;
+    }
+}
+const actions = {
+    seckillListActions(context){
+        getSeckill().then(res=>{
+            context.commit('changeSeckillList',res.data.list);
+        })
+    }
+}
+const getters = {
+    seckillList(state){
+        return state.seckillList
+    }
+}
+export default {
+    state,mutations,actions,getters,
+    namespaced:true
+}

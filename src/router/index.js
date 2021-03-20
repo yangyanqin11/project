@@ -12,7 +12,8 @@ import cate from "../pages/cate/cate";
 import spec from "../pages/spec/spec";
 import goods from "../pages/goods/goods";
 const member = ()=>import('../pages/member/member');
-
+const banner = ()=>import('../pages/banner/banner')
+const seckill = ()=>import('../pages/seckill/seckill')
 
 
 export default new Router({
@@ -64,7 +65,17 @@ export default new Router({
           path:'/member',
           name:'会员管理',
           component:member
-        },,
+        },
+        {
+          path:'/banner',
+          name:'轮播图管理',
+          component:banner
+        },
+        {
+          path:'/seckill',
+          name:'秒杀活动',
+          component:seckill
+        },
         {
           path:'',
           redirect:'/home'

@@ -4,6 +4,7 @@ const baseUrl = '/api';
 import store from '../store/index'
 import { errorAlert } from "../utils/alert";
 import router from "../router";
+
 // 在这设置请求头信息，请求头信息的设置
 // axios.interceptors.request.use(config=>{
 //     console.log('本次的请求头信息为:'+config.url);
@@ -30,6 +31,7 @@ axios.interceptors.response.use(res=>{
     return res
 })
 
+// -------------------菜单管理------------------------
 //添加菜单时候的请求
 export const addMenu = (data)=>{
     //利用axios向后端发起请求，里面包括请求的方式，地址，如果需要参数则这个时候我们也应该传递相应的参数
@@ -73,7 +75,7 @@ export const delMenu = (data)=>{
         data:qs.stringify(data)
     })
 }
-
+// -------------------角色管理-----------------------
 // 添加角色管理的请求
 export const addRole=(data)=>{
     return axios({
@@ -115,6 +117,7 @@ export const delRole = (data)=>{
         data:qs.stringify(data)
     })
 }
+// ----------------------------管理员管理--------------------------
 // 添加管理员
 export const addManager = (data)=>{
     return axios({
@@ -340,5 +343,101 @@ export const oneMember = (params)=>{
         method:'get',
         url:baseUrl+'/api/memberinfo',
         params,
+    })
+}
+
+// 更新会员管理
+export const updateMember = (data)=>{
+    return axios({
+        method:'post',
+        url:baseUrl+'/api/memberedit',
+        data:qs.stringify(data),
+    })
+}
+// ------------------------轮播图管理-----------------------------
+// 添加轮播图
+export const addBanner = (data)=>{
+    var form = new FormData();
+    for(let i in data){
+        form.append(i,data[i])
+    }
+    return axios({
+        method:'post',
+        url:baseUrl+'/api/banneradd',
+        data:form
+    })
+}
+// 获取轮播图列表
+export const getBanner = ()=>{
+    return axios({
+        method:'get',
+        url:baseUrl+'/api/bannerlist'
+    })
+}
+// 获取详情
+export const oneBanner = (params)=>{
+   return axios({
+       method:'get',
+       url:baseUrl+'/api/bannerinfo',
+       params,
+   })
+}
+// 更新数据
+export const updateBanner = (data)=>{
+    var form  = new FormData();
+    for(let i in data){
+        form.append(i,data[i]);
+    }
+    return axios({
+        method:'post',
+        url:baseUrl+'/api/banneredit',
+        data:form
+    })
+}
+// 删除数据
+export const delBanner = (data)=>{
+    return axios({
+        method:'post',
+        url:baseUrl+'/api/bannerdelete',
+        data:qs.stringify(data)
+    })
+}
+// ----------------------------秒杀管理--------------------
+export const addSeckill = (data)=>{
+    return axios({
+        method:'post',
+        url:baseUrl+'/api/seckadd',
+        dat:qs.stringify(data),
+    })
+}
+// 显示秒杀列表
+export const getSeckill = (params)=>{
+    return axios({
+        method:'get',
+        url:baseUrl+'/api/secklist',
+        params
+    })
+}
+// 获取详情
+export const oneSeckill = (params)=>{
+    return axios({
+        method:'get',
+        url:baseUrl+'/api/seckinfo',
+        params
+    })
+}
+// 更新数据
+export const updateSeckill=(data)=>{
+    return axios({
+        method:'post',
+        url:baseUrl+'/api/seckedit',
+        data:qs.stringify(data)
+    })
+}
+export const delSeckill = (data)=>{
+    return axios({
+        method:'post',
+        url:baseUrl+'/api/seckdelete',
+        data:qs.stringify(data),
     })
 }
